@@ -4,12 +4,13 @@ from re import template
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView
 from .models import Post
-
+from django.contrib.auth.models import User
 from blogapp.models import Post
 # Create your views here.
 
 # view with function
 def main(request):
+    # posts = Post.objects.filter(Post.author)      add {'posts' : posts})
     return render(request, 'main_page.html', {})
 
 # Class view

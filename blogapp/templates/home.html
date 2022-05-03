@@ -7,13 +7,22 @@
 <br/>
 <ul>
 {% for post in object_list %}
-    <li><a href="{% url 'article-detail' post.pk %}">
-        {{post.title}}</a> - {{post.author}}<br />
-        <p>Posted By : {{post.author.first_name}} {{post.author.last_name}}  ---- {{post.author.email}}</p>
-        {{post.text }}
+    <li>
+
+        {% if user.is_authenticated %}
+            <a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
+
+        {% elif not is_authenticated %}
+            <a href="{% url 'register' %}">{{post.title}}</a>
+
+        {% endif %}
+
+        - {{post.author}}<br />
+        <p>Posted By : {{post.author.first_name}} {{post.author.last_name}}<br/>
+            Contact : {{post.author.email}}</p>
+        <!-- {{post.text }} -->
     </li>
     <pre>
-
     </pre>
 {% endfor %}
 </ul>
